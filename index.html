@@ -6,6 +6,41 @@
   <title>筋動學運動按摩 | 台中清水專業運動按摩</title>
   <meta name="description" content="筋動學運動按摩 - 台中市清水區專業運動按摩、筋膜放鬆、運動恢復。Google 5.0 星好評推薦。">
   <script src="assets/tw-to-css.cdn.min.js"></script>
+  <script>
+    function injectOfflineTailwindStyles() {
+      if (!window.twi) return;
+
+      const classNames = new Set();
+      document.querySelectorAll("[class]").forEach((element) => {
+        element.className
+          .split(/\s+/)
+          .map((name) => name.trim())
+          .filter(Boolean)
+          .forEach((name) => classNames.add(name));
+      });
+
+      const css = window.twi(Array.from(classNames).join(" "), {
+        ignoreMediaQueries: false,
+        merge: true,
+        minify: true
+      });
+
+      let styleTag = document.getElementById("offline-tw-styles");
+      if (!styleTag) {
+        styleTag = document.createElement("style");
+        styleTag.id = "offline-tw-styles";
+        document.head.appendChild(styleTag);
+      }
+
+      styleTag.textContent = css;
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", injectOfflineTailwindStyles, { once: true });
+    } else {
+      injectOfflineTailwindStyles();
+    }
+  </script>
   <style>
     html {
       scroll-behavior: smooth;
