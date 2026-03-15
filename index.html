@@ -5,6 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>筋動學運動按摩 | 台中清水專業運動按摩</title>
   <meta name="description" content="筋動學運動按摩 - 台中市清水區專業運動按摩、筋膜放鬆、運動恢復。Google 5.0 星好評推薦。">
+  <link rel="canonical" href="https://jdx-pro.com/">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="筋動學運動按摩">
+  <meta name="keywords" content="筋動學運動按摩,台中運動按摩,清水運動按摩,筋膜放鬆,深層組織按摩,運動恢復">
+  <meta name="theme-color" content="#1a1a2e">
+  <meta name="format-detection" content="telephone=no">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:title" content="筋動學運動按摩 | 台中清水專業運動按摩">
+  <meta property="og:description" content="專業運動按摩、筋膜放鬆、運動恢復服務，位於台中市清水區，提供深層組織按摩與個人化放鬆療程。">
+  <meta property="og:site_name" content="筋動學運動按摩">
+  <meta property="og:url" content="https://jdx-pro.com/">
+  <meta property="og:image" content="https://jdx-pro.com/assets/hero.png">
+  <meta property="og:image:alt" content="筋動學運動按摩店內與服務形象">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="筋動學運動按摩 | 台中清水專業運動按摩">
+  <meta property="twitter:description" content="專業運動按摩、筋膜放鬆、運動恢復服務，位於台中市清水區。">
+  <meta property="twitter:image" content="https://jdx-pro.com/assets/hero.png">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "筋動學運動按摩",
+      "description": "專業運動按摩、筋膜放鬆、運動恢復服務，位於台中市清水區。",
+      "url": "https://jdx-pro.com/",
+      "image": ["https://jdx-pro.com/assets/hero.png"],
+      "telephone": "+886-902-189-391",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "民族路二段351號",
+        "addressLocality": "清水區",
+        "addressRegion": "台中市",
+        "addressCountry": "TW"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "https://schema.org/Saturday",
+          "opens": "09:00",
+          "closes": "21:00"
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/kine_life_tw",
+        "https://maps.app.goo.gl/gxwNELuG1dwXoDXt8"
+      ],
+      "priceRange": "$$"
+    }
+  </script>
   <style>
     :root {
       --bg: #1a1a2e;
@@ -17,7 +66,8 @@
       --accent: #e8a87c;
       --accent-dark: #d4a574;
       --line: rgba(255, 255, 255, 0.12);
-      --shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+      --shadow-soft: 0 4px 14px rgba(56, 36, 22, 0.10);
+      --shadow-hover: 0 14px 30px rgba(56, 36, 22, 0.18);
       --radius: 24px;
       --container: 1200px;
     }
@@ -221,7 +271,7 @@
       padding: 16px;
       border-radius: 22px;
       background: rgba(22, 33, 62, 0.96);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-hover);
     }
 
     .mobile-panel a {
@@ -307,6 +357,7 @@
 
     .feature-grid {
       grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
     }
 
     .feature-card,
@@ -315,31 +366,47 @@
     .contact-card,
     .form-card {
       border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-soft);
+      transition: box-shadow 0.22s ease, transform 0.22s ease;
     }
 
     .feature-card {
       background: #fff;
-      padding: 28px 24px;
+      padding: 24px 24px 22px;
       text-align: center;
+      min-height: 194px;
+      border: 1px solid rgba(26, 26, 46, 0.04);
+    }
+
+    .feature-card:hover,
+    .info-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
     }
 
     .feature-icon,
     .info-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 18px;
+      width: 58px;
+      height: 58px;
+      border-radius: 14px;
       display: grid;
       place-items: center;
-      background: rgba(232, 168, 124, 0.12);
+      background: rgba(232, 168, 124, 0.10);
       color: var(--accent);
       margin: 0 auto 18px;
+    }
+
+    .feature-icon svg,
+    .info-icon svg {
+      width: 26px;
+      height: 26px;
+      stroke: currentColor;
     }
 
     .feature-card h3,
     .service-card h3 {
       margin: 0 0 10px;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
     }
 
     .feature-card p,
@@ -350,6 +417,11 @@
     .footer-meta {
       margin: 0;
       color: var(--text-soft);
+    }
+
+    .feature-card p {
+      line-height: 1.7;
+      font-size: 0.98rem;
     }
 
     .service-grid {
@@ -388,35 +460,37 @@
 
     .info-layout {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
+      grid-template-columns: minmax(0, 1fr) minmax(580px, 1.02fr);
+      gap: 34px;
       align-items: stretch;
     }
 
     .info-list {
       display: grid;
-      gap: 16px;
+      gap: 20px;
     }
 
     .info-card {
       background: #fff;
-      padding: 22px;
+      min-height: 108px;
+      padding: 20px 18px;
       display: flex;
-      gap: 16px;
-      align-items: flex-start;
+      gap: 14px;
+      align-items: center;
+      border: 1px solid rgba(26, 26, 46, 0.04);
     }
 
     .info-icon {
       margin: 0;
       flex: 0 0 auto;
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
     }
 
     .info-copy small {
       display: block;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
       color: #999;
       font-size: 0.78rem;
       text-transform: uppercase;
@@ -426,25 +500,25 @@
     .info-copy strong {
       display: block;
       color: var(--text-dark);
-      font-size: 1rem;
+      font-size: 0.99rem;
       margin-bottom: 4px;
+      line-height: 1.35;
     }
 
     .info-copy a {
       color: var(--accent);
       font-weight: 700;
-      font-size: 0.92rem;
+      font-size: 0.94rem;
     }
 
     .map-card {
       border-radius: var(--radius);
-      background: var(--bg);
-      padding: 32px;
-      min-height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: var(--shadow);
+      background: transparent;
+      padding: 0;
+      min-height: 0;
+      align-self: start;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
     }
 
     .map-card h3 {
@@ -458,11 +532,12 @@
     }
 
     .map-box {
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.05);
-      margin-top: 14px;
+      border: 0;
+      border-radius: 22px;
+      padding: 0;
+      background: transparent;
+      margin-top: 0;
+      overflow: hidden;
     }
 
     .contact-grid {
@@ -588,10 +663,13 @@
     @media (max-width: 1024px) {
       .feature-grid,
       .service-grid,
-      .info-layout,
       .contact-grid,
       .footer-grid {
         grid-template-columns: 1fr 1fr;
+      }
+
+      .info-layout {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -660,13 +738,17 @@
       }
 
       .form-card,
-      .map-card,
       .contact-card,
       .info-card,
       .service-body,
       .feature-card {
         padding-left: 20px;
         padding-right: 20px;
+      }
+
+      .map-card {
+        padding-left: 0;
+        padding-right: 0;
       }
     }
   </style>
@@ -729,22 +811,40 @@
 
         <div class="feature-grid">
           <article class="feature-card">
-            <div class="feature-icon">★</div>
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 15.5 8.5 18l.9-4.1-3.1-2.9 4.2-.4L12 6.8l1.5 3.8 4.2.4-3.1 2.9.9 4.1z" opacity="0"></path>
+                <circle cx="12" cy="8" r="3.5"></circle>
+                <path d="M8.5 11.2 7 20l5-2.8 5 2.8-1.5-8.8"></path>
+              </svg>
+            </div>
             <h3>專業認證</h3>
             <p>具備專業運動按摩與肌動學認證，提供最專業的服務</p>
           </article>
           <article class="feature-card">
-            <div class="feature-icon">♥</div>
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20s-6.5-4.2-8.5-8C2 9 3.8 6 7 6c2 0 3.2 1.1 5 3 1.8-1.9 3-3 5-3 3.2 0 5 3 3.5 6-2 3.8-8.5 8-8.5 8z"></path>
+              </svg>
+            </div>
             <h3>用心服務</h3>
             <p>以客戶需求為核心，量身打造個人化的按摩療程</p>
           </article>
           <article class="feature-card">
-            <div class="feature-icon">✓</div>
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3 18.5 5.8V11c0 4.2-2.6 7-6.5 9-3.9-2-6.5-4.8-6.5-9V5.8z"></path>
+              </svg>
+            </div>
             <h3>安全可靠</h3>
             <p>遵循嚴格的衛生與安全標準，讓您安心享受服務</p>
           </article>
           <article class="feature-card">
-            <div class="feature-icon">5.0</div>
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m12 4 2.2 4.5 5 .7-3.6 3.4.9 4.9-4.5-2.4-4.5 2.4.9-4.9L4.8 9.2l5-.7z"></path>
+              </svg>
+            </div>
             <h3>五星好評</h3>
             <p>Google 評分 5.0 星，深受客戶信賴與推薦</p>
           </article>
@@ -803,7 +903,12 @@
         <div class="info-layout">
           <div class="info-list">
             <article class="info-card">
-              <div class="info-icon">⌂</div>
+              <div class="info-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11z"></path>
+                  <circle cx="12" cy="10" r="2.5"></circle>
+                </svg>
+              </div>
               <div class="info-copy">
                 <small>地址</small>
                 <strong>台中市清水區民族路二段351號</strong>
@@ -811,7 +916,11 @@
               </div>
             </article>
             <article class="info-card">
-              <div class="info-icon">☎</div>
+              <div class="info-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 16.5v3a1.5 1.5 0 0 1-1.6 1.5A17.5 17.5 0 0 1 3 4.6 1.5 1.5 0 0 1 4.5 3h3A1.5 1.5 0 0 1 9 4.3c.2 1 .6 2 1 2.9a1.5 1.5 0 0 1-.3 1.6L8.4 10a14 14 0 0 0 5.6 5.6l1.2-1.3a1.5 1.5 0 0 1 1.6-.3c.9.4 1.9.8 2.9 1A1.5 1.5 0 0 1 21 16.5z"></path>
+                </svg>
+              </div>
               <div class="info-copy">
                 <small>電話</small>
                 <strong>+886 902 189 391</strong>
@@ -819,14 +928,25 @@
               </div>
             </article>
             <article class="info-card">
-              <div class="info-icon">⏰</div>
+              <div class="info-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="8"></circle>
+                  <path d="M12 8v4l2.8 1.8"></path>
+                </svg>
+              </div>
               <div class="info-copy">
                 <small>營業時間</small>
                 <strong>週六 9:00 AM – 9:00 PM</strong>
               </div>
             </article>
             <article class="info-card">
-              <div class="info-icon">◎</div>
+              <div class="info-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="4" width="16" height="16" rx="5"></rect>
+                  <circle cx="12" cy="12" r="3.5"></circle>
+                  <circle cx="17.2" cy="6.8" r="0.8" fill="currentColor" stroke="none"></circle>
+                </svg>
+              </div>
               <div class="info-copy">
                 <small>Instagram</small>
                 <strong>@kine_life_tw</strong>
@@ -836,16 +956,11 @@
           </div>
 
           <aside class="map-card">
-            <div>
-              <p class="eyebrow">Google Map</p>
-              <h3>店面地圖</h3>
-              <p>部署上線後，這裡會直接顯示可互動的 Google 地圖，方便訪客查看位置與導航。</p>
-            </div>
-            <div class="map-box" style="padding:0;overflow:hidden;">
+            <div class="map-box">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3639.5!2d120.5518556!3d24.2661336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346915c56863d641%3A0xb2774ab4ea5d60c2!2z56ey5YuV5a245YuV5oyJ5pGp!5e0!3m2!1szh-TW!2stw!4v1710000000000!5m2!1szh-TW!2stw"
                 width="100%"
-                height="420"
+                height="520"
                 style="border:0;display:block;"
                 allowfullscreen=""
                 loading="lazy"
