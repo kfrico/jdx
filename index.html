@@ -5,43 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>筋動學運動按摩 | 台中清水專業運動按摩</title>
   <meta name="description" content="筋動學運動按摩 - 台中市清水區專業運動按摩、筋膜放鬆、運動恢復。Google 5.0 星好評推薦。">
-  <script src="assets/tw-to-css.cdn.min.js"></script>
-  <script>
-    function injectOfflineTailwindStyles() {
-      if (!window.twi) return;
-
-      const classNames = new Set();
-      document.querySelectorAll("[class]").forEach((element) => {
-        element.className
-          .split(/\s+/)
-          .map((name) => name.trim())
-          .filter(Boolean)
-          .forEach((name) => classNames.add(name));
-      });
-
-      const css = window.twi(Array.from(classNames).join(" "), {
-        ignoreMediaQueries: false,
-        merge: true,
-        minify: true
-      });
-
-      let styleTag = document.getElementById("offline-tw-styles");
-      if (!styleTag) {
-        styleTag = document.createElement("style");
-        styleTag.id = "offline-tw-styles";
-        document.head.appendChild(styleTag);
-      }
-
-      styleTag.textContent = css;
-    }
-
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", injectOfflineTailwindStyles, { once: true });
-    } else {
-      injectOfflineTailwindStyles();
-    }
-  </script>
   <style>
+    :root {
+      --bg: #1a1a2e;
+      --bg-alt: #16213e;
+      --bg-soft: #f5f0eb;
+      --text: #ffffff;
+      --text-dark: #1a1a2e;
+      --text-muted: rgba(255, 255, 255, 0.68);
+      --text-soft: #666666;
+      --accent: #e8a87c;
+      --accent-dark: #d4a574;
+      --line: rgba(255, 255, 255, 0.12);
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+      --radius: 24px;
+      --container: 1200px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     html {
       scroll-behavior: smooth;
     }
@@ -49,7 +33,19 @@
     body {
       margin: 0;
       font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
-      background: #1a1a2e;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
     }
 
     button,
@@ -58,369 +54,920 @@
       font: inherit;
     }
 
-    .nav-scrolled {
-      background: rgba(15, 15, 30, 0.92);
+    .container {
+      width: min(var(--container), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 88px 0;
+    }
+
+    .section-light {
+      background: var(--bg-soft);
+      color: var(--text-dark);
+    }
+
+    .section-dark {
+      background: var(--bg);
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 56px;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 16px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+    }
+
+    .divider {
+      width: 64px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 999px;
+      margin: 0 auto 24px;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: inherit;
+      opacity: 0.78;
+      font-size: 1.05rem;
+    }
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 1000;
+      transition: background 0.25s ease, box-shadow 0.25s ease, backdrop-filter 0.25s ease;
+    }
+
+    .site-header.scrolled {
+      background: rgba(15, 15, 30, 0.88);
       backdrop-filter: blur(12px);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .nav-shell {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 80px;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .brand-main {
+      font-size: 1.8rem;
+      font-weight: 900;
+    }
+
+    .brand-sub {
+      color: var(--accent);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 132px;
+      height: 46px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 800;
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .cta:hover {
+      transform: translateY(-1px);
+    }
+
+    .cta-primary {
+      background: var(--accent);
+      color: var(--text-dark);
+    }
+
+    .cta-primary:hover {
+      background: var(--accent-dark);
+    }
+
+    .cta-secondary {
+      border-color: rgba(255, 255, 255, 0.28);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .cta-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      display: none;
+      padding-bottom: 16px;
+    }
+
+    .mobile-panel {
+      display: grid;
+      gap: 10px;
+      padding: 16px;
+      border-radius: 22px;
+      background: rgba(22, 33, 62, 0.96);
+      box-shadow: var(--shadow);
+    }
+
+    .mobile-panel a {
+      color: rgba(255, 255, 255, 0.84);
+      font-weight: 600;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .hero-media,
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      background: linear-gradient(to bottom, rgba(26, 26, 46, 0.7), rgba(26, 26, 46, 0.48), rgba(26, 26, 46, 0.9));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: min(860px, calc(100% - 32px));
+      padding-top: 88px;
+    }
+
+    .hero h1 {
+      margin: 0 0 20px;
+      font-size: clamp(3.2rem, 8vw, 6.5rem);
+      line-height: 0.96;
+      font-weight: 900;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero p {
+      margin: 0 auto 36px;
+      max-width: 700px;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .scroll-cue {
+      position: absolute;
+      left: 50%;
+      bottom: 28px;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      color: rgba(255, 255, 255, 0.55);
+      animation: bounce 1.8s infinite;
+    }
+
+    .feature-grid,
+    .service-grid,
+    .contact-grid,
+    .footer-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .feature-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .feature-card,
+    .service-card,
+    .info-card,
+    .contact-card,
+    .form-card {
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-card {
+      background: #fff;
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .feature-icon,
+    .info-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: rgba(232, 168, 124, 0.12);
+      color: var(--accent);
+      margin: 0 auto 18px;
+    }
+
+    .feature-card h3,
+    .service-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+    }
+
+    .feature-card p,
+    .service-card p,
+    .info-copy p,
+    .contact-lead,
+    .footer-copy,
+    .footer-meta {
+      margin: 0;
+      color: var(--text-soft);
+    }
+
+    .service-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .service-card {
+      background: var(--bg-alt);
+      overflow: hidden;
+    }
+
+    .service-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .service-body {
+      padding: 24px;
+    }
+
+    .service-body .eyebrow {
+      font-size: 0.72rem;
+      margin-bottom: 8px;
+    }
+
+    .service-body p {
+      color: rgba(255, 255, 255, 0.66);
+      margin-bottom: 18px;
+    }
+
+    .service-link {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .info-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .info-card {
+      background: #fff;
+      padding: 22px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .info-icon {
+      margin: 0;
+      flex: 0 0 auto;
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+    }
+
+    .info-copy small {
+      display: block;
+      margin-bottom: 4px;
+      color: #999;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .info-copy strong {
+      display: block;
+      color: var(--text-dark);
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .info-copy a {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .map-card {
+      border-radius: var(--radius);
+      background: var(--bg);
+      padding: 32px;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow);
+    }
+
+    .map-card h3 {
+      margin: 0 0 14px;
+      font-size: 1.8rem;
+    }
+
+    .map-card p {
+      margin: 0 0 18px;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .map-box {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      margin-top: 14px;
+    }
+
+    .contact-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: start;
+    }
+
+    .form-card {
+      background: var(--bg-alt);
+      padding: 30px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.95rem;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: var(--bg);
+      color: #fff;
+      outline: none;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .contact-side {
+      display: grid;
+      gap: 20px;
+    }
+
+    .contact-side h3 {
+      margin: 0 0 10px;
+      font-size: 1.8rem;
+    }
+
+    .contact-card {
+      background: var(--bg-alt);
+      padding: 22px;
+    }
+
+    .contact-card small {
+      display: block;
+      margin-bottom: 6px;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.85rem;
+    }
+
+    .contact-card strong {
+      display: block;
+      font-size: 1.08rem;
+    }
+
+    .site-footer {
+      background: #0f0f1e;
+      padding: 52px 0 28px;
+    }
+
+    .footer-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-bottom: 32px;
+    }
+
+    .footer-title {
+      margin: 0 0 10px;
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .footer-title span {
+      color: var(--accent);
+    }
+
+    .footer-links,
+    .footer-meta {
+      display: grid;
+      gap: 8px;
+    }
+
+    .footer-meta a,
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.42);
+    }
+
+    .footer-meta a:hover,
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .copyright {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 24px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.8rem;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translate(-50%, 0);
+      }
+      40% {
+        transform: translate(-50%, -8px);
+      }
+      60% {
+        transform: translate(-50%, -4px);
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .feature-grid,
+      .service-grid,
+      .info-layout,
+      .contact-grid,
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .nav-links {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .mobile-menu.open {
+        display: block;
+      }
+
+      .feature-grid,
+      .service-grid,
+      .info-layout,
+      .contact-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        text-align: left;
+      }
+
+      .hero-content {
+        padding-top: 112px;
+      }
+
+      .hero p {
+        margin-left: 0;
+      }
+
+      .hero-actions {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: min(var(--container), calc(100% - 24px));
+      }
+
+      .section {
+        padding: 72px 0;
+      }
+
+      .brand-main {
+        font-size: 1.5rem;
+      }
+
+      .brand-sub {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 3.2rem;
+      }
+
+      .cta {
+        width: 100%;
+      }
+
+      .form-card,
+      .map-card,
+      .contact-card,
+      .info-card,
+      .service-body,
+      .feature-card {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
     }
   </style>
 </head>
 <body>
-  <div id="root">
-    <div class="min-h-screen bg-[#1A1A2E]">
-      <nav id="site-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex items-center justify-between h-16 md:h-20">
-            <a href="#hero" class="flex items-center gap-2 group no-underline">
-              <span class="text-xl md:text-2xl font-bold text-white group-hover:text-[#E8A87C] transition-colors">筋動學</span>
-              <span class="text-sm text-[#E8A87C] hidden sm:inline">運動按摩</span>
-            </a>
-            <div class="hidden md:flex items-center gap-8">
-              <a href="#hero" class="text-white/80 hover:text-[#E8A87C] transition-colors text-sm font-medium tracking-wide no-underline">首頁</a>
-              <a href="#about" class="text-white/80 hover:text-[#E8A87C] transition-colors text-sm font-medium tracking-wide no-underline">關於我們</a>
-              <a href="#services" class="text-white/80 hover:text-[#E8A87C] transition-colors text-sm font-medium tracking-wide no-underline">服務項目</a>
-              <a href="#info" class="text-white/80 hover:text-[#E8A87C] transition-colors text-sm font-medium tracking-wide no-underline">店家資訊</a>
-              <a href="#contact" class="text-white/80 hover:text-[#E8A87C] transition-colors text-sm font-medium tracking-wide no-underline">聯絡預約</a>
-              <a href="#contact" class="bg-[#E8A87C] text-[#1A1A2E] px-5 py-2 rounded-full text-sm font-bold hover:bg-[#D4A574] transition-colors no-underline">立即預約</a>
-            </div>
-            <button id="menu-toggle" class="md:hidden text-white p-2 bg-transparent border-0" type="button" aria-label="開啟選單">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="4" x2="20" y1="12" y2="12"></line>
-                <line x1="4" x2="20" y1="6" y2="6"></line>
-                <line x1="4" x2="20" y1="18" y2="18"></line>
-              </svg>
-            </button>
-          </div>
-          <div id="mobile-menu" class="hidden md:hidden pb-4">
-            <div class="rounded-2xl bg-[#16213E]/95 backdrop-blur p-4 flex flex-col gap-3">
-              <a href="#hero" class="text-white/80 hover:text-[#E8A87C] transition-colors text-sm font-medium no-underline">首頁</a>
-              <a href="#about" class="text-white/80 hover:text-[#E8A87C] transition-colors text-sm font-medium no-underline">關於我們</a>
-              <a href="#services" class="text-white/80 hover:text-[#E8A87C] transition-colors text-sm font-medium no-underline">服務項目</a>
-              <a href="#info" class="text-white/80 hover:text-[#E8A87C] transition-colors text-sm font-medium no-underline">店家資訊</a>
-              <a href="#contact" class="text-white/80 hover:text-[#E8A87C] transition-colors text-sm font-medium no-underline">聯絡預約</a>
-              <a href="#contact" class="bg-[#E8A87C] text-[#1A1A2E] px-5 py-3 rounded-full text-sm font-bold text-center no-underline">立即預約</a>
-            </div>
-          </div>
-        </div>
+  <header class="site-header" id="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="#hero">
+        <span class="brand-main">筋動學</span>
+        <span class="brand-sub">運動按摩</span>
+      </a>
+      <nav class="nav-links" aria-label="主選單">
+        <a href="#hero">首頁</a>
+        <a href="#about">關於我們</a>
+        <a href="#services">服務項目</a>
+        <a href="#info">店家資訊</a>
+        <a href="#contact">聯絡預約</a>
+        <a class="cta cta-primary" href="#contact">立即預約</a>
       </nav>
-
-      <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0">
-          <img src="assets/hero.png" alt="筋動學運動按摩" class="w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-b from-[#1A1A2E]/70 via-[#1A1A2E]/50 to-[#1A1A2E]/90"></div>
-        </div>
-        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <p class="text-[#E8A87C] text-sm md:text-base tracking-[0.3em] uppercase mb-4 font-medium">Kinesiology Sports Massage</p>
-          <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">筋動學<br><span class="text-[#E8A87C]">運動按摩</span></h1>
-          <p class="text-white/70 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">專業運動按摩 · 筋膜放鬆 · 運動恢復<br>讓您的身體回歸最佳狀態</p>
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="#contact" class="bg-[#E8A87C] text-[#1A1A2E] px-8 py-3.5 rounded-full text-base font-bold hover:bg-[#D4A574] transition-all hover:scale-105 shadow-lg shadow-[#E8A87C]/20 no-underline">立即預約</a>
-            <a href="#about" class="border border-white/30 text-white px-8 py-3.5 rounded-full text-base font-medium hover:bg-white/10 transition-all no-underline">了解更多</a>
-          </div>
-        </div>
-        <a href="#about" class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50 animate-bounce" aria-label="往下捲動">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m6 9 6 6 6-6"></path>
-          </svg>
-        </a>
-      </section>
-
-      <section id="about" class="py-20 md:py-28 bg-[#F5F0EB]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
-            <p class="text-[#E8A87C] text-sm tracking-[0.2em] uppercase mb-3 font-medium">About Us</p>
-            <h2 class="text-3xl md:text-4xl font-bold text-[#1A1A2E] mb-6">關於筋動學</h2>
-            <div class="w-16 h-1 bg-[#E8A87C] mx-auto rounded-full mb-8"></div>
-            <p class="text-[#333] text-base md:text-lg max-w-3xl mx-auto leading-relaxed">筋動學運動按摩位於台中市清水區，我們專注於運動按摩與肌動學療法，結合現代運動科學與傳統按摩技術，幫助運動愛好者與一般民眾緩解肌肉疲勞、改善身體機能、加速運動恢復。無論您是專業運動員還是日常辦公族，我們都能為您提供最適合的按摩方案。</p>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center group">
-              <div class="w-14 h-14 bg-[#E8A87C]/10 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-[#E8A87C]/20 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-[#E8A87C]">
-                  <path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path>
-                  <circle cx="12" cy="8" r="6"></circle>
-                </svg>
-              </div>
-              <h3 class="text-lg font-bold text-[#1A1A2E] mb-2">專業認證</h3>
-              <p class="text-sm text-[#666] leading-relaxed">具備專業運動按摩與肌動學認證，提供最專業的服務</p>
-            </div>
-            <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center group">
-              <div class="w-14 h-14 bg-[#E8A87C]/10 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-[#E8A87C]/20 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-[#E8A87C]">
-                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                </svg>
-              </div>
-              <h3 class="text-lg font-bold text-[#1A1A2E] mb-2">用心服務</h3>
-              <p class="text-sm text-[#666] leading-relaxed">以客戶需求為核心，量身打造個人化的按摩療程</p>
-            </div>
-            <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center group">
-              <div class="w-14 h-14 bg-[#E8A87C]/10 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-[#E8A87C]/20 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-[#E8A87C]">
-                  <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
-                </svg>
-              </div>
-              <h3 class="text-lg font-bold text-[#1A1A2E] mb-2">安全可靠</h3>
-              <p class="text-sm text-[#666] leading-relaxed">遵循嚴格的衛生與安全標準，讓您安心享受服務</p>
-            </div>
-            <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center group">
-              <div class="w-14 h-14 bg-[#E8A87C]/10 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-[#E8A87C]/20 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-[#E8A87C]">
-                  <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
-                </svg>
-              </div>
-              <h3 class="text-lg font-bold text-[#1A1A2E] mb-2">五星好評</h3>
-              <p class="text-sm text-[#666] leading-relaxed">Google 評分 5.0 星，深受客戶信賴與推薦</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="services" class="py-20 md:py-28 bg-[#1A1A2E]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
-            <p class="text-[#E8A87C] text-sm tracking-[0.2em] uppercase mb-3 font-medium">Our Services</p>
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">服務項目</h2>
-            <div class="w-16 h-1 bg-[#E8A87C] mx-auto rounded-full"></div>
-          </div>
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div class="group bg-[#16213E] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-              <div class="relative h-56 overflow-hidden">
-                <img src="assets/service-deep-tissue.png" alt="深層組織按摩" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-[#16213E] to-transparent opacity-60"></div>
-              </div>
-              <div class="p-6">
-                <p class="text-[#E8A87C] text-xs tracking-wider uppercase mb-1">Deep Tissue Massage</p>
-                <h3 class="text-xl font-bold text-white mb-3">深層組織按摩</h3>
-                <p class="text-white/60 text-sm leading-relaxed mb-5">針對深層肌肉組織進行專業按摩，有效緩解長期肌肉緊繃與疼痛，改善血液循環，促進身體自然修復。</p>
-                <a href="#contact" class="flex items-center gap-2 text-[#E8A87C] text-sm font-medium hover:gap-3 transition-all no-underline">預約此服務</a>
-              </div>
-            </div>
-            <div class="group bg-[#16213E] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-              <div class="relative h-56 overflow-hidden">
-                <img src="assets/service-myofascial.png" alt="筋膜放鬆療程" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-[#16213E] to-transparent opacity-60"></div>
-              </div>
-              <div class="p-6">
-                <p class="text-[#E8A87C] text-xs tracking-wider uppercase mb-1">Myofascial Release</p>
-                <h3 class="text-xl font-bold text-white mb-3">筋膜放鬆療程</h3>
-                <p class="text-white/60 text-sm leading-relaxed mb-5">運用專業筋膜放鬆技術，解開筋膜沾黏，恢復肌肉彈性與活動度，有效改善姿勢不良造成的不適。</p>
-                <a href="#contact" class="flex items-center gap-2 text-[#E8A87C] text-sm font-medium hover:gap-3 transition-all no-underline">預約此服務</a>
-              </div>
-            </div>
-            <div class="group bg-[#16213E] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-              <div class="relative h-56 overflow-hidden">
-                <img src="assets/service-recovery.png" alt="運動恢復按摩" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-[#16213E] to-transparent opacity-60"></div>
-              </div>
-              <div class="p-6">
-                <p class="text-[#E8A87C] text-xs tracking-wider uppercase mb-1">Sports Recovery</p>
-                <h3 class="text-xl font-bold text-white mb-3">運動恢復按摩</h3>
-                <p class="text-white/60 text-sm leading-relaxed mb-5">專為運動後恢復設計的按摩療程，加速乳酸代謝、減少肌肉痠痛，幫助您更快回到最佳運動狀態。</p>
-                <a href="#contact" class="flex items-center gap-2 text-[#E8A87C] text-sm font-medium hover:gap-3 transition-all no-underline">預約此服務</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="info" class="py-20 md:py-28 bg-[#F5F0EB]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
-            <p class="text-[#E8A87C] text-sm tracking-[0.2em] uppercase mb-3 font-medium">Store Info</p>
-            <h2 class="text-3xl md:text-4xl font-bold text-[#1A1A2E] mb-6">店家資訊</h2>
-            <div class="w-16 h-1 bg-[#E8A87C] mx-auto rounded-full"></div>
-          </div>
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            <div class="space-y-4">
-              <div class="bg-white rounded-2xl p-5 shadow-md flex items-start gap-4 hover:shadow-lg transition-shadow">
-                <div class="w-12 h-12 bg-[#E8A87C]/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-[#E8A87C]">
-                    <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
-                    <circle cx="12" cy="10" r="3"></circle>
-                  </svg>
-                </div>
-                <div class="flex-1">
-                  <p class="text-xs text-[#999] uppercase tracking-wider mb-1">地址</p>
-                  <p class="text-[#1A1A2E] font-semibold text-base">台中市清水區民族路二段351號</p>
-                  <a href="https://maps.app.goo.gl/gxwNELuG1dwXoDXt8" target="_blank" rel="noopener noreferrer" class="text-[#E8A87C] text-sm font-medium hover:underline mt-1 inline-block">導航前往 →</a>
-                </div>
-              </div>
-              <div class="bg-white rounded-2xl p-5 shadow-md flex items-start gap-4 hover:shadow-lg transition-shadow">
-                <div class="w-12 h-12 bg-[#E8A87C]/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-[#E8A87C]">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                  </svg>
-                </div>
-                <div class="flex-1">
-                  <p class="text-xs text-[#999] uppercase tracking-wider mb-1">電話</p>
-                  <p class="text-[#1A1A2E] font-semibold text-base">+886 902 189 391</p>
-                  <a href="tel:+886902189391" class="text-[#E8A87C] text-sm font-medium hover:underline mt-1 inline-block">撥打電話 →</a>
-                </div>
-              </div>
-              <div class="bg-white rounded-2xl p-5 shadow-md flex items-start gap-4 hover:shadow-lg transition-shadow">
-                <div class="w-12 h-12 bg-[#E8A87C]/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-[#E8A87C]">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polyline points="12 6 12 12 16 14"></polyline>
-                  </svg>
-                </div>
-                <div class="flex-1">
-                  <p class="text-xs text-[#999] uppercase tracking-wider mb-1">營業時間</p>
-                  <p class="text-[#1A1A2E] font-semibold text-base">週六 9:00 AM – 9:00 PM</p>
-                </div>
-              </div>
-              <div class="bg-white rounded-2xl p-5 shadow-md flex items-start gap-4 hover:shadow-lg transition-shadow">
-                <div class="w-12 h-12 bg-[#E8A87C]/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-[#E8A87C]">
-                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-                  </svg>
-                </div>
-                <div class="flex-1">
-                  <p class="text-xs text-[#999] uppercase tracking-wider mb-1">Instagram</p>
-                  <p class="text-[#1A1A2E] font-semibold text-base">@kine_life_tw</p>
-                  <a href="https://www.instagram.com/kine_life_tw" target="_blank" rel="noopener noreferrer" class="text-[#E8A87C] text-sm font-medium hover:underline mt-1 inline-block">追蹤我們 →</a>
-                </div>
-              </div>
-            </div>
-            <div class="rounded-2xl overflow-hidden shadow-lg min-h-[400px] lg:h-auto bg-[#1A1A2E] p-8 flex flex-col justify-between">
-              <div>
-                <p class="text-[#E8A87C] text-sm tracking-[0.2em] uppercase mb-3 font-medium">Offline Map Info</p>
-                <h3 class="text-2xl font-bold text-white mb-4">離線位置資訊</h3>
-                <p class="text-white/70 leading-relaxed mb-8">
-                  這個離線版本不再載入 Google 地圖嵌入，避免沒網路時出現空白內容。
-                  若需要導航，可在連網時使用下方地址與地圖連結。
-                </p>
-              </div>
-              <div class="space-y-4">
-                <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <p class="text-white/40 text-sm mb-2">店家地址</p>
-                  <p class="text-white text-lg font-semibold">台中市清水區民族路二段351號</p>
-                </div>
-                <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <p class="text-white/40 text-sm mb-2">備註</p>
-                  <p class="text-white/70 leading-relaxed">可先離線瀏覽本頁內容；恢復網路後再使用「導航前往」取得路線。</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="py-20 md:py-28 bg-[#1A1A2E]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
-            <p class="text-[#E8A87C] text-sm tracking-[0.2em] uppercase mb-3 font-medium">Contact &amp; Booking</p>
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">聯絡預約</h2>
-            <div class="w-16 h-1 bg-[#E8A87C] mx-auto rounded-full mb-8"></div>
-            <p class="text-white/60 text-base max-w-2xl mx-auto">填寫以下表單，我們將盡快與您聯繫確認預約時間。<br>您也可以直接撥打電話或透過 Instagram 聯繫我們。</p>
-          </div>
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <div class="bg-[#16213E] rounded-2xl p-6 md:p-8 shadow-xl">
-              <form class="space-y-5" onsubmit="event.preventDefault(); alert('表單展示用，請改接實際預約系統。');">
-                <div>
-                  <label class="text-white/70 text-sm mb-2 block">姓名</label>
-                  <input type="text" name="name" required placeholder="請輸入您的姓名" class="w-full bg-[#1A1A2E] border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[#E8A87C] transition-colors">
-                </div>
-                <div>
-                  <label class="text-white/70 text-sm mb-2 block">電話</label>
-                  <input type="tel" name="phone" required placeholder="請輸入您的電話號碼" class="w-full bg-[#1A1A2E] border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[#E8A87C] transition-colors">
-                </div>
-                <div>
-                  <label class="text-white/70 text-sm mb-2 block">預約日期</label>
-                  <input type="date" name="date" required class="w-full bg-[#1A1A2E] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#E8A87C] transition-colors">
-                </div>
-                <div>
-                  <label class="text-white/70 text-sm mb-2 block">備註</label>
-                  <textarea name="message" rows="4" placeholder="請描述您的需求或特殊狀況..." class="w-full bg-[#1A1A2E] border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[#E8A87C] transition-colors resize-none"></textarea>
-                </div>
-                <button type="submit" class="w-full bg-[#E8A87C] text-[#1A1A2E] py-3.5 rounded-full font-bold text-base hover:bg-[#D4A574] transition-all hover:scale-[1.02] shadow-lg shadow-[#E8A87C]/20">送出預約</button>
-              </form>
-            </div>
-            <div class="space-y-8">
-              <div>
-                <h3 class="text-2xl font-bold text-white mb-4">快速聯繫方式</h3>
-                <p class="text-white/60 leading-relaxed">除了填寫預約表單，您也可以透過以下方式直接聯繫我們，我們會在第一時間為您安排最合適的時段。</p>
-              </div>
-              <a href="tel:+886902189391" class="block bg-[#16213E] rounded-2xl p-6 hover:bg-[#16213E]/80 transition-colors no-underline">
-                <p class="text-white/50 text-sm">撥打電話</p>
-                <p class="text-white font-semibold text-lg">0902-189-391</p>
-              </a>
-              <a href="https://www.instagram.com/kine_life_tw" target="_blank" rel="noopener noreferrer" class="block bg-[#16213E] rounded-2xl p-6 hover:bg-[#16213E]/80 transition-colors no-underline">
-                <p class="text-white/50 text-sm">Instagram</p>
-                <p class="text-white font-semibold text-lg">@kine_life_tw</p>
-              </a>
-              <a href="https://maps.app.goo.gl/gxwNELuG1dwXoDXt8" target="_blank" rel="noopener noreferrer" class="block bg-[#16213E] rounded-2xl p-6 hover:bg-[#16213E]/80 transition-colors no-underline">
-                <p class="text-white/50 text-sm">前往店面</p>
-                <p class="text-white font-semibold">台中市清水區民族路二段351號</p>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <footer class="bg-[#0F0F1E] py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
-            <div>
-              <h3 class="text-xl font-bold text-white mb-3">筋動學<span class="text-[#E8A87C] ml-1">運動按摩</span></h3>
-              <p class="text-white/40 text-sm leading-relaxed">專業運動按摩 · 筋膜放鬆 · 運動恢復<br>讓您的身體回歸最佳狀態</p>
-            </div>
-            <div>
-              <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">快速導航</h4>
-              <div class="space-y-2">
-                <a href="#hero" class="block text-white/40 hover:text-[#E8A87C] transition-colors text-sm no-underline">首頁</a>
-                <a href="#about" class="block text-white/40 hover:text-[#E8A87C] transition-colors text-sm no-underline">關於我們</a>
-                <a href="#services" class="block text-white/40 hover:text-[#E8A87C] transition-colors text-sm no-underline">服務項目</a>
-                <a href="#info" class="block text-white/40 hover:text-[#E8A87C] transition-colors text-sm no-underline">店家資訊</a>
-                <a href="#contact" class="block text-white/40 hover:text-[#E8A87C] transition-colors text-sm no-underline">聯絡預約</a>
-              </div>
-            </div>
-            <div>
-              <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">聯絡資訊</h4>
-              <div class="space-y-2 text-sm text-white/40">
-                <p>台中市清水區民族路二段351號</p>
-                <p>電話：0902-189-391</p>
-                <p>營業時間：週六 9:00 AM – 9:00 PM</p>
-                <a href="https://www.instagram.com/kine_life_tw" target="_blank" rel="noopener noreferrer" class="inline-block hover:text-[#E8A87C] transition-colors mt-1 no-underline">Instagram: @kine_life_tw</a>
-              </div>
-            </div>
-          </div>
-          <div class="border-t border-white/10 pt-8">
-            <p class="text-center text-white/30 text-xs">© 2026 筋動學運動按摩. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <button class="menu-toggle" id="menu-toggle" aria-label="切換選單">☰</button>
     </div>
-  </div>
+    <div class="container mobile-menu" id="mobile-menu">
+      <div class="mobile-panel">
+        <a href="#hero">首頁</a>
+        <a href="#about">關於我們</a>
+        <a href="#services">服務項目</a>
+        <a href="#info">店家資訊</a>
+        <a href="#contact">聯絡預約</a>
+        <a class="cta cta-primary" href="#contact">立即預約</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero-media">
+        <img src="assets/hero.png" alt="筋動學運動按摩">
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="eyebrow">Kinesiology Sports Massage</p>
+        <h1>筋動學<br><span>運動按摩</span></h1>
+        <p>專業運動按摩 · 筋膜放鬆 · 運動恢復<br>讓您的身體回歸最佳狀態</p>
+        <div class="hero-actions">
+          <a class="cta cta-primary" href="#contact">立即預約</a>
+          <a class="cta cta-secondary" href="#about">了解更多</a>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#about" aria-label="往下捲動">⌄</a>
+    </section>
+
+    <section class="section section-light" id="about">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">About Us</p>
+          <h2>關於筋動學</h2>
+          <div class="divider"></div>
+          <p>筋動學運動按摩位於台中市清水區，我們專注於運動按摩與肌動學療法，結合現代運動科學與傳統按摩技術，幫助運動愛好者與一般民眾緩解肌肉疲勞、改善身體機能、加速運動恢復。無論您是專業運動員還是日常辦公族，我們都能為您提供最適合的按摩方案。</p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-icon">★</div>
+            <h3>專業認證</h3>
+            <p>具備專業運動按摩與肌動學認證，提供最專業的服務</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">♥</div>
+            <h3>用心服務</h3>
+            <p>以客戶需求為核心，量身打造個人化的按摩療程</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">✓</div>
+            <h3>安全可靠</h3>
+            <p>遵循嚴格的衛生與安全標準，讓您安心享受服務</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">5.0</div>
+            <h3>五星好評</h3>
+            <p>Google 評分 5.0 星，深受客戶信賴與推薦</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="services">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Our Services</p>
+          <h2>服務項目</h2>
+          <div class="divider"></div>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card">
+            <img src="assets/service-deep-tissue.png" alt="深層組織按摩">
+            <div class="service-body">
+              <p class="eyebrow">Deep Tissue Massage</p>
+              <h3>深層組織按摩</h3>
+              <p>針對深層肌肉組織進行專業按摩，有效緩解長期肌肉緊繃與疼痛，改善血液循環，促進身體自然修復。</p>
+              <a class="service-link" href="#contact">預約此服務</a>
+            </div>
+          </article>
+          <article class="service-card">
+            <img src="assets/service-myofascial.png" alt="筋膜放鬆療程">
+            <div class="service-body">
+              <p class="eyebrow">Myofascial Release</p>
+              <h3>筋膜放鬆療程</h3>
+              <p>運用專業筋膜放鬆技術，解開筋膜沾黏，恢復肌肉彈性與活動度，有效改善姿勢不良造成的不適。</p>
+              <a class="service-link" href="#contact">預約此服務</a>
+            </div>
+          </article>
+          <article class="service-card">
+            <img src="assets/service-recovery.png" alt="運動恢復按摩">
+            <div class="service-body">
+              <p class="eyebrow">Sports Recovery</p>
+              <h3>運動恢復按摩</h3>
+              <p>專為運動後恢復設計的按摩療程，加速乳酸代謝、減少肌肉痠痛，幫助您更快回到最佳運動狀態。</p>
+              <a class="service-link" href="#contact">預約此服務</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="info">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Store Info</p>
+          <h2>店家資訊</h2>
+          <div class="divider"></div>
+        </div>
+
+        <div class="info-layout">
+          <div class="info-list">
+            <article class="info-card">
+              <div class="info-icon">⌂</div>
+              <div class="info-copy">
+                <small>地址</small>
+                <strong>台中市清水區民族路二段351號</strong>
+                <a href="https://maps.app.goo.gl/gxwNELuG1dwXoDXt8" target="_blank" rel="noopener noreferrer">導航前往 →</a>
+              </div>
+            </article>
+            <article class="info-card">
+              <div class="info-icon">☎</div>
+              <div class="info-copy">
+                <small>電話</small>
+                <strong>+886 902 189 391</strong>
+                <a href="tel:+886902189391">撥打電話 →</a>
+              </div>
+            </article>
+            <article class="info-card">
+              <div class="info-icon">⏰</div>
+              <div class="info-copy">
+                <small>營業時間</small>
+                <strong>週六 9:00 AM – 9:00 PM</strong>
+              </div>
+            </article>
+            <article class="info-card">
+              <div class="info-icon">◎</div>
+              <div class="info-copy">
+                <small>Instagram</small>
+                <strong>@kine_life_tw</strong>
+                <a href="https://www.instagram.com/kine_life_tw" target="_blank" rel="noopener noreferrer">追蹤我們 →</a>
+              </div>
+            </article>
+          </div>
+
+          <aside class="map-card">
+            <div>
+              <p class="eyebrow">Offline Map Info</p>
+              <h3>離線位置資訊</h3>
+              <p>這個離線版本不再載入 Google 地圖嵌入，避免沒網路時出現空白內容。若需要導航，可在連網時使用左側地址與地圖連結。</p>
+            </div>
+            <div>
+              <div class="map-box">
+                <strong>店家地址</strong>
+                <p>台中市清水區民族路二段351號</p>
+              </div>
+              <div class="map-box">
+                <strong>離線瀏覽說明</strong>
+                <p>頁面內容、圖片與版型都已本地化；只有你主動點外部連結時才需要網路。</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="contact">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Contact &amp; Booking</p>
+          <h2>聯絡預約</h2>
+          <div class="divider"></div>
+          <p>填寫以下表單，我們將盡快與您聯繫確認預約時間。您也可以直接撥打電話或透過 Instagram 聯繫我們。</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="form-card">
+            <form onsubmit="event.preventDefault(); alert('表單展示用，請改接實際預約系統。');">
+              <div class="field">
+                <label for="name">姓名</label>
+                <input id="name" name="name" type="text" placeholder="請輸入您的姓名" required>
+              </div>
+              <div class="field">
+                <label for="phone">電話</label>
+                <input id="phone" name="phone" type="tel" placeholder="請輸入您的電話號碼" required>
+              </div>
+              <div class="field">
+                <label for="date">預約日期</label>
+                <input id="date" name="date" type="date" required>
+              </div>
+              <div class="field">
+                <label for="message">備註</label>
+                <textarea id="message" name="message" rows="5" placeholder="請描述您的需求或特殊狀況..."></textarea>
+              </div>
+              <button class="cta cta-primary" type="submit" style="width:100%;height:54px;">送出預約</button>
+            </form>
+          </div>
+
+          <div class="contact-side">
+            <div>
+              <h3>快速聯繫方式</h3>
+              <p class="contact-lead">除了填寫預約表單，您也可以透過以下方式直接聯繫我們，我們會在第一時間為您安排最合適的時段。</p>
+            </div>
+            <a class="contact-card" href="tel:+886902189391">
+              <small>撥打電話</small>
+              <strong>0902-189-391</strong>
+            </a>
+            <a class="contact-card" href="https://www.instagram.com/kine_life_tw" target="_blank" rel="noopener noreferrer">
+              <small>Instagram</small>
+              <strong>@kine_life_tw</strong>
+            </a>
+            <a class="contact-card" href="https://maps.app.goo.gl/gxwNELuG1dwXoDXt8" target="_blank" rel="noopener noreferrer">
+              <small>前往店面</small>
+              <strong>台中市清水區民族路二段351號</strong>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 class="footer-title">筋動學<span>運動按摩</span></h3>
+          <p class="footer-copy">專業運動按摩 · 筋膜放鬆 · 運動恢復<br>讓您的身體回歸最佳狀態</p>
+        </div>
+        <div>
+          <h4 class="footer-title">快速導航</h4>
+          <div class="footer-links">
+            <a href="#hero">首頁</a>
+            <a href="#about">關於我們</a>
+            <a href="#services">服務項目</a>
+            <a href="#info">店家資訊</a>
+            <a href="#contact">聯絡預約</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">聯絡資訊</h4>
+          <div class="footer-meta">
+            <span>台中市清水區民族路二段351號</span>
+            <span>電話：0902-189-391</span>
+            <span>營業時間：週六 9:00 AM – 9:00 PM</span>
+            <a href="https://www.instagram.com/kine_life_tw" target="_blank" rel="noopener noreferrer">Instagram: @kine_life_tw</a>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">© 2026 筋動學運動按摩. All rights reserved.</div>
+    </div>
+  </footer>
 
   <script>
-    const nav = document.getElementById("site-nav");
+    const siteHeader = document.getElementById("site-header");
     const menuToggle = document.getElementById("menu-toggle");
     const mobileMenu = document.getElementById("mobile-menu");
     const mobileLinks = mobileMenu.querySelectorAll("a");
 
-    function updateNav() {
-      if (window.scrollY > 24) {
-        nav.classList.add("nav-scrolled");
+    function syncHeader() {
+      if (window.scrollY > 18) {
+        siteHeader.classList.add("scrolled");
       } else {
-        nav.classList.remove("nav-scrolled");
+        siteHeader.classList.remove("scrolled");
       }
     }
 
     menuToggle.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
+      mobileMenu.classList.toggle("open");
     });
 
     mobileLinks.forEach((link) => {
       link.addEventListener("click", () => {
-        mobileMenu.classList.add("hidden");
+        mobileMenu.classList.remove("open");
       });
     });
 
-    window.addEventListener("scroll", updateNav, { passive: true });
-    updateNav();
+    window.addEventListener("scroll", syncHeader, { passive: true });
+    syncHeader();
   </script>
 </body>
 </html>
