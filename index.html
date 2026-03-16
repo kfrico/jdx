@@ -175,7 +175,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 80px;
+      min-height: 70px;
       gap: 20px;
     }
 
@@ -364,7 +364,7 @@
     .service-card,
     .info-card,
     .contact-card,
-    .form-card {
+    .booking-card {
       border-radius: var(--radius);
       box-shadow: var(--shadow-soft);
       transition: box-shadow 0.22s ease, transform 0.22s ease;
@@ -541,40 +541,102 @@
     }
 
     .contact-grid {
-      grid-template-columns: 1.1fr 0.9fr;
-      align-items: start;
+      grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
+      align-items: stretch;
     }
 
-    .form-card {
-      background: var(--bg-alt);
-      padding: 30px;
-    }
-
-    .field {
+    .booking-card {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+        var(--bg-alt);
+      padding: 34px;
       display: grid;
-      gap: 8px;
-      margin-bottom: 16px;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 28px;
+      align-items: center;
     }
 
-    .field label {
-      color: rgba(255, 255, 255, 0.72);
-      font-size: 0.95rem;
+    .booking-copy {
+      display: grid;
+      gap: 18px;
     }
 
-    .field input,
-    .field textarea {
-      width: 100%;
+    .booking-copy .eyebrow {
+      margin: 0;
+    }
+
+    .booking-copy h3 {
+      margin: 0;
+      font-size: clamp(1.9rem, 3vw, 2.5rem);
+      line-height: 1.12;
+    }
+
+    .booking-copy p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.74);
+    }
+
+    .booking-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .booking-step {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
       padding: 14px 16px;
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: var(--bg);
-      color: #fff;
-      outline: none;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .field input:focus,
-    .field textarea:focus {
-      border-color: var(--accent);
+    .booking-step strong {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      background: var(--accent);
+      color: var(--text-dark);
+      font-size: 0.94rem;
+    }
+
+    .booking-step span {
+      color: #fff;
+      line-height: 1.55;
+    }
+
+    .qr-panel {
+      background: #fff;
+      border-radius: 28px;
+      padding: 18px;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.22);
+    }
+
+    .qr-panel img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 20px;
+      background: #fff;
+    }
+
+    .qr-caption {
+      margin: 14px 0 0;
+      text-align: center;
+      color: var(--text-dark);
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .qr-caption small {
+      display: block;
+      margin-top: 4px;
+      color: #7a6b62;
+      font-size: 0.88rem;
+      font-weight: 700;
     }
 
     .contact-side {
@@ -671,6 +733,16 @@
       .info-layout {
         grid-template-columns: 1fr;
       }
+
+      .booking-card {
+        grid-template-columns: 1fr;
+      }
+
+      .qr-panel {
+        max-width: 360px;
+        width: 100%;
+        margin: 0 auto;
+      }
     }
 
     @media (max-width: 820px) {
@@ -737,7 +809,7 @@
         width: 100%;
       }
 
-      .form-card,
+      .booking-card,
       .contact-card,
       .info-card,
       .service-body,
@@ -749,6 +821,10 @@
       .map-card {
         padding-left: 0;
         padding-right: 0;
+      }
+
+      .booking-copy h3 {
+        font-size: 1.8rem;
       }
     }
   </style>
@@ -979,30 +1055,35 @@
           <p class="eyebrow">Contact &amp; Booking</p>
           <h2>聯絡預約</h2>
           <div class="divider"></div>
-          <p>填寫以下表單，我們將盡快與您聯繫確認預約時間。您也可以直接撥打電話或透過 Instagram 聯繫我們。</p>
+          <p>掃描下方 LINE QR Code 即可直接預約。若偏好其他方式，也可以來電、透過 Instagram 聯繫，或直接導航到店。</p>
         </div>
 
         <div class="contact-grid">
-          <div class="form-card">
-            <form onsubmit="event.preventDefault(); alert('表單展示用，請改接實際預約系統。');">
-              <div class="field">
-                <label for="name">姓名</label>
-                <input id="name" name="name" type="text" placeholder="請輸入您的姓名" required>
+          <div class="booking-card">
+            <div class="booking-copy">
+              <p class="eyebrow">LINE Booking</p>
+              <h3>掃描 QR Code，直接用 LINE 預約</h3>
+              <p>加入 LINE 後傳送姓名、想預約的日期時段，以及身體狀況或需求，我們會盡快回覆並協助安排合適時段。</p>
+              <div class="booking-list">
+                <div class="booking-step">
+                  <strong>1</strong>
+                  <span>開啟 LINE，掃描右側 QR Code 加入好友。</span>
+                </div>
+                <div class="booking-step">
+                  <strong>2</strong>
+                  <span>傳送姓名、聯絡方式與希望預約時段。</span>
+                </div>
+                <div class="booking-step">
+                  <strong>3</strong>
+                  <span>補充需求或不適部位，我們會協助安排療程。</span>
+                </div>
               </div>
-              <div class="field">
-                <label for="phone">電話</label>
-                <input id="phone" name="phone" type="tel" placeholder="請輸入您的電話號碼" required>
-              </div>
-              <div class="field">
-                <label for="date">預約日期</label>
-                <input id="date" name="date" type="date" required>
-              </div>
-              <div class="field">
-                <label for="message">備註</label>
-                <textarea id="message" name="message" rows="5" placeholder="請描述您的需求或特殊狀況..."></textarea>
-              </div>
-              <button class="cta cta-primary" type="submit" style="width:100%;height:54px;">送出預約</button>
-            </form>
+            </div>
+
+            <div class="qr-panel">
+              <img src="assets/lineqrcode.jpg" alt="筋動學運動按摩 LINE 預約 QR Code" loading="lazy">
+              <p class="qr-caption">掃描加入 LINE<small>快速預約與諮詢</small></p>
+            </div>
           </div>
 
           <div class="contact-side">
