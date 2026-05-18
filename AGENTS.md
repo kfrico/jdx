@@ -10,7 +10,7 @@ There is no build pipeline for this project; files are served as-is.
   Run a local preview from the repository root.
 - `git diff`
   Review content, SEO, and layout changes before committing.
-- `rg -n 'jdx-pro.com|902-189-391|kine_life_tw' index.html sitemap.xml robots.txt`
+- `rg -n 'jdx-pro.com|436033303|kine_life_tw' index.html sitemap.xml robots.txt`
   Recheck critical domain, phone, and profile references after content updates.
 
 ## Coding Style & Naming Conventions
