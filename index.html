@@ -559,6 +559,53 @@
       color: rgba(255, 255, 255, 0.72);
     }
 
+    .branch-switcher {
+      display: flex;
+      gap: 10px;
+      padding: 18px 18px 0;
+      background: #fff;
+    }
+
+    .branch-switcher[hidden] {
+      display: none;
+    }
+
+    .branch-button {
+      flex: 1;
+      padding: 12px;
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      background: #fff;
+      color: var(--text-dark);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .branch-button[aria-pressed="true"] {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .branch-button:focus-visible {
+      outline: 3px solid var(--text-dark);
+      outline-offset: 3px;
+    }
+
+    .branch-details {
+      display: grid;
+      gap: 8px;
+      padding: 18px;
+      background: #fff;
+      color: var(--text-dark);
+    }
+
+    .branch-details a {
+      color: var(--text-dark);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
     .map-box {
       border: 0;
       border-radius: 22px;
@@ -1072,9 +1119,17 @@
             </article>
           </div>
 
-          <aside class="map-card">
+          <aside class="map-card" aria-label="門市地圖">
+            <div class="branch-switcher" role="group" aria-label="選擇門市" hidden>
+              <button class="branch-button" type="button" data-branch="qingshui" aria-pressed="true" aria-controls="branch-map branch-details">清水店</button>
+              <button class="branch-button" type="button" data-branch="nantun" aria-pressed="false" aria-controls="branch-map branch-details">南屯分店</button>
+            </div>
+            <div class="branch-details" id="branch-details" aria-live="polite" aria-atomic="true">
+              <strong id="branch-address">清水店：台中市清水區民族路二段351號</strong>
+              <a id="branch-directions" href="https://maps.app.goo.gl/gxwNELuG1dwXoDXt8" target="_blank" rel="noopener noreferrer">導航前往清水店 →</a>
+            </div>
             <div class="map-box">
-              <iframe
+              <iframe id="branch-map"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3639.5!2d120.5518556!3d24.2661336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346915c56863d641%3A0xb2774ab4ea5d60c2!2z56ey5YuV5a245YuV5oyJ5pGp!5e0!3m2!1szh-TW!2stw!4v1710000000000!5m2!1szh-TW!2stw"
                 width="100%"
                 height="520"
@@ -1187,6 +1242,42 @@
   </footer>
 
   <script>
+    const branchMap = document.getElementById("branch-map");
+    const branchAddress = document.getElementById("branch-address");
+    const branchDirections = document.getElementById("branch-directions");
+    const branchButtons = document.querySelectorAll(".branch-button");
+    const nantunAddress = "408臺中市南屯區大光街26號二樓";
+    const branches = {
+      qingshui: {
+        name: "清水店",
+        address: "台中市清水區民族路二段351號",
+        map: branchMap.getAttribute("src"),
+        directions: branchDirections.getAttribute("href")
+      },
+      nantun: {
+        name: "南屯分店",
+        address: nantunAddress,
+        map: `https://www.google.com/maps?q=${encodeURIComponent(nantunAddress)}&output=embed`,
+        directions: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(nantunAddress)}`
+      }
+    };
+
+    branchButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        if (button.getAttribute("aria-pressed") === "true") return;
+        const branch = branches[button.dataset.branch];
+        branchButtons.forEach((item) => {
+          item.setAttribute("aria-pressed", String(item === button));
+        });
+        branchAddress.textContent = `${branch.name}：${branch.address}`;
+        branchDirections.href = branch.directions;
+        branchDirections.textContent = `導航前往${branch.name} →`;
+        branchMap.title = `筋動學運動按摩${branch.name}地圖`;
+        branchMap.src = branch.map;
+      });
+    });
+    document.querySelector(".branch-switcher").hidden = false;
+
     const siteHeader = document.getElementById("site-header");
     const menuToggle = document.getElementById("menu-toggle");
     const mobileMenu = document.getElementById("mobile-menu");
